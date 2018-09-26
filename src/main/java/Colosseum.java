@@ -73,6 +73,24 @@ public class Colosseum {
      */
     public static Pokemon buildPokemon() {
         Pokemon tempPokemon = new Pokemon();
+        System.out.println("Please name your pokemon:");
+        tempPokemon.name = myScan.next();
+        System.out.println("How many hitpoints will it have?");
+        tempPokemon.hitPoints = myScan.nextInt();
+        if (tempPokemon.hitPoints < 0 || tempPokemon.hitPoints > MAX_HIT_POINTS) {
+            System.out.println("Sorry. Hit points must be between 1 and 50");
+        }
+        System.out.println("Enter your attack level");
+        tempPokemon.attackLevel = myScan.nextInt();
+        System.out.println("Enter your defense level");
+        tempPokemon.defenseLevel = myScan.nextInt();
+        if (tempPokemon.attackLevel > MAX_HIT_POINTS || tempPokemon.defenseLevel < 1) {
+            System.out.println("Sorry, attack level must be between 1-49");
+        }
+        if (tempPokemon.attackLevel + tempPokemon.defenseLevel != MAX_HIT_POINTS) {
+            System.out.println("Sorry, attack and defense must add to 50");
+        }
+
         return tempPokemon;
     }
 
@@ -90,7 +108,13 @@ public class Colosseum {
      * Implement this function.
      */
     public static void printWhoIsAhead() {
-        System.out.println("Implement me!");
+        System.out.println(firstPokemon.name + " has " + firstPokemon.hitPoints + " hitpoints");
+        System.out.println(secondPokemon.name + " has " + secondPokemon.hitPoints + " hitpoints");
+        if (firstPokemon.hitPoints > secondPokemon.hitPoints) {
+            System.out.println(firstPokemon.name + "is ahead");
+        } else {
+            System.out.println(secondPokemon.name + "is ahead");
+        }
     }
 
     /**
@@ -101,7 +125,11 @@ public class Colosseum {
      * Write this function.
      */
     public static void determineWinner() {
-        System.out.println("Implement me!");
+        if (firstPokemon.hitPoints > 0 && secondPokemon.hitPoints != 0) {
+            System.out.println(firstPokemon.name + "wins");
+        } else if (secondPokemon.hitPoints > 0 && firstPokemon.hitPoints != 0) {
+            System.out.println(secondPokemon.name + "wins");
+        }
     }
 
     /**
